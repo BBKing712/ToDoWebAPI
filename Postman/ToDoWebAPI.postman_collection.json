@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "a0e87649-b7e7-41d6-93db-952e5ed499bf",
+		"name": "ToDoWebAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ToDoWebAPI_Löschen eines To-Do-Elements",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{ToDoWebAPI_Url}}/api/TodoItems/1",
+					"host": [
+						"{{ToDoWebAPI_Url}}"
+					],
+					"path": [
+						"api",
+						"TodoItems",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToDoWebAPI_Alle To-do-Elemente abrufen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ToDoWebAPI_Url}}/api/TodoItems",
+					"host": [
+						"{{ToDoWebAPI_Url}}"
+					],
+					"path": [
+						"api",
+						"TodoItems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToDoWebAPI_Vorhandenes To-Do-Element aktualisieren",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n  \"name\":\"walk cat\",\r\n  \"isComplete\":true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ToDoWebAPI_Url}}/api/TodoItems/1",
+					"host": [
+						"{{ToDoWebAPI_Url}}"
+					],
+					"path": [
+						"api",
+						"TodoItems",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToDoWebAPI_Ein To-Do-Element nach ID abrufen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ToDoWebAPI_Url}}/api/TodoItems/1",
+					"host": [
+						"{{ToDoWebAPI_Url}}"
+					],
+					"path": [
+						"api",
+						"TodoItems",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToDoWebAPI_Neues To-DoElement hinzufügen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\":\"walk dog\",\r\n  \"isComplete\":true\r\n \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ToDoWebAPI_Url}}/api/TodoItems",
+					"host": [
+						"{{ToDoWebAPI_Url}}"
+					],
+					"path": [
+						"api",
+						"TodoItems"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
