@@ -90,13 +90,40 @@
 			"response": []
 		},
 		{
-			"name": "ToDoWebAPI_Neues To-DoElement hinzufügen",
+			"name": "ToDoWebAPI_Ein_Neues To-DoElement hinzufügen",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\":\"walk dog\",\r\n  \"isComplete\":true\r\n \r\n}",
+					"raw": "[\r\n{\r\n  \"name\":\"goet some pizza\",\r\n  \"isComplete\":false\r\n \r\n}\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ToDoWebAPI_Url}}/api/TodoItems",
+					"host": [
+						"{{ToDoWebAPI_Url}}"
+					],
+					"path": [
+						"api",
+						"TodoItems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ToDoWebAPI_Neue To-DoElemente hinzufügen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n  \"name\":\"walk dog\",\r\n  \"isComplete\":true\r\n \r\n},\r\n{\r\n  \"name\":\"go to gym\",\r\n  \"isComplete\":true\r\n \r\n},\r\n{\r\n  \"name\":\"get some pizza\",\r\n  \"isComplete\":true\r\n \r\n}\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"

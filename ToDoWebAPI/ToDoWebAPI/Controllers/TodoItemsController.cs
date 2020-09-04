@@ -76,13 +76,28 @@ namespace ToDoWebAPI.Controllers
         // POST: api/TodoItems
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
-        {
-            _context.TodoItems.Add(todoItem);
-            await _context.SaveChangesAsync();
+        //[HttpPost]
+        //public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
+        //{
+        //    _context.TodoItems.Add(todoItem);
+        //    await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+        //    return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+        //}
+        [HttpPost]
+        public async Task<ActionResult<List<TodoItem>>> PostTodoItems(TodoItem[] todoItems)
+        {
+            List<TodoItem> todoItemList = new List<TodoItem>();
+
+            foreach (TodoItem todoItem in todoItems)
+            {
+                _context.TodoItems.Add(todoItem);
+                await _context.SaveChangesAsync();
+                todoItemList.Add(todoItem);
+            }
+
+
+            return CreatedAtAction("PostTodoItems", todoItemList);
         }
 
         // DELETE: api/TodoItems/5
