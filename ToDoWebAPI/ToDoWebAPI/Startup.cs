@@ -16,7 +16,6 @@ namespace ToDoWebAPI
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,14 +28,14 @@ namespace ToDoWebAPI
         {
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  builder =>
-                                  {
-                                      //Vue-Default-Url
-                                      builder.WithOrigins("http://localhost:8080/");
-                                  });
-            });
-            services.AddDbContext<TodoContext>(opt =>
+                options.AddPolicy(name: "MyPolicy",
+                    builder =>
+                    {
+                        //Vue-Default-Url "http://localhost:8080/"
+                        builder.WithOrigins("http://localhost:8080/")
+                                .WithMethods("PUT", "POST", "DELETE", "GET");
+                    });
+            }); services.AddDbContext<TodoContext>(opt =>
                opt.UseInMemoryDatabase("TodoList"));
             services.AddControllers();
         }
