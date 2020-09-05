@@ -26,15 +26,26 @@ namespace ToDoWebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //see https://docs.microsoft.com/de-de/aspnet/core/security/cors?view=aspnetcore-3.1
+            //Vue-Default-Url "http://localhost:8080/"
             services.AddCors(options =>
             {
-                options.AddPolicy(name: "MyPolicy",
-                    builder =>
-                    {
-                        //Vue-Default-Url "http://localhost:8080/"
-                        builder.WithOrigins("http://localhost:8080/")
-                                .WithMethods("PUT", "POST", "DELETE", "GET");
-                    });
+
+                services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                }));
+
+                //options.AddPolicy(name: "MyPolicy",
+                //    builder =>
+                //    {
+
+                //        builder.WithOrigins("http://localhost:8080/")
+                //                .WithMethods("PUT", "POST", "DELETE", "GET")
+                //                .AllowAnyHeader();
+                //    });
             }); services.AddDbContext<TodoContext>(opt =>
                opt.UseInMemoryDatabase("TodoList"));
             services.AddControllers();
@@ -47,6 +58,8 @@ namespace ToDoWebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("MyPolicy");
 
             app.UseRouting();
 

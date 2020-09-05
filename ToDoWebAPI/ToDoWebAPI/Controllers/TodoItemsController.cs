@@ -11,7 +11,6 @@ using ToDoWebAPI.Modelle;
 
 namespace ToDoWebAPI.Controllers
 {
-    [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
 
