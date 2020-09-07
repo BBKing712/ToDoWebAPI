@@ -50,13 +50,15 @@ namespace ToDoWebAPI
             //                .AllowAnyHeader();
             //    });
             //});
+            string[] origins = { "http://localhost:8080" };
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:8080",
-                                        "http://www.contoso.com");
+                    builder.WithOrigins(origins)
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
                 });
             });
 
