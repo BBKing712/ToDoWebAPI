@@ -16,6 +16,8 @@ namespace ToDoWebAPI
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,25 +30,37 @@ namespace ToDoWebAPI
         {
             //see https://docs.microsoft.com/de-de/aspnet/core/security/cors?view=aspnetcore-3.1
             //Vue-Default-Url "http://localhost:8080/"
+            //services.AddCors(options =>
+            //{
+
+            //    services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            //    {
+            //        builder.AllowAnyOrigin()
+            //                .WithOrigins("http://localhost:8080/")
+            //               .AllowAnyMethod()
+            //               .AllowAnyHeader();
+            //    }));
+
+            //options.AddPolicy(name: "MyPolicy",
+            //    builder =>
+            //    {
+
+            //        builder.WithOrigins("http://localhost:8080/")
+            //                .WithMethods("PUT", "POST", "DELETE", "GET")
+            //                .AllowAnyHeader();
+            //    });
+            //});
             services.AddCors(options =>
             {
-
-                services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
                 {
-                    builder.AllowAnyOrigin()
-                           .AllowAnyMethod()
-                           .AllowAnyHeader();
-                }));
+                    builder.WithOrigins("http://localhost:8080",
+                                        "http://www.contoso.com");
+                });
+            });
 
-                //options.AddPolicy(name: "MyPolicy",
-                //    builder =>
-                //    {
-
-                //        builder.WithOrigins("http://localhost:8080/")
-                //                .WithMethods("PUT", "POST", "DELETE", "GET")
-                //                .AllowAnyHeader();
-                //    });
-            }); services.AddDbContext<TodoContext>(opt =>
+            services.AddDbContext<TodoContext>(opt =>
                opt.UseInMemoryDatabase("TodoList"));
             services.AddControllers();
         }
@@ -59,7 +73,8 @@ namespace ToDoWebAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors("MyPolicy");
+            //app.UseCors("MyPolicy");
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseRouting();
 

@@ -16,13 +16,11 @@ namespace TestConsole
 
 			try
 			{
-				var aaa = url.GetJsonAsync<TodoItem[]>();
-				TodoItem[] todoItems  = aaa.Result;
-				var bbb = "bbb";
+				var task = url.GetJsonAsync<TodoItem[]>();
+				TodoItem[] todoItems  = task.Result;
 			}
 			catch (Exception ex)
 			{
-				var xxx = "xxx";
 			}
         }
 	}
