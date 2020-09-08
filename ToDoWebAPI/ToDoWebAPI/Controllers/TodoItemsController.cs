@@ -73,7 +73,8 @@ namespace ToDoWebAPI.Controllers
                 }
             }
 
-            return NoContent();
+            //return NoContent();
+            return CreatedAtAction("PutTodoItem", todoItem);
         }
 
         // POST: api/TodoItems
